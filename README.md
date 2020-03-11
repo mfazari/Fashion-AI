@@ -7,7 +7,7 @@ Training a convolutional network using Keras and Tensorflow to recognize clothin
 Getting Started
 ------------
 
-***Disclaimer:*** *This is still a work in progress. Many dataset will be expanded to provide better results. Functionality will be added.*
+***Disclaimer:*** *Fashion AI is a work in progress. The dataset will be expanded to provide better results. Functionality such as recognition of objects as well as further optimization and debug are planned to be added in the future.*
 
 **Following libraries are being used:**
 * keras
