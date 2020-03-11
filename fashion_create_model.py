@@ -40,7 +40,7 @@ keras.__version__
 
 
 # Read in image data
-image_data = pd.read_csv('./dataset/image_pixels.csv')
+image_data = pd.read_csv('./data/image_pixels.csv')
 
 # Show shape of data
 print(f'Shape: {image_data.shape}')

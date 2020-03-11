@@ -143,7 +143,7 @@ def bar_plot(x, y, title, color, filename):
     for p in ax.patches:
         # get_width pulls left or right; get_y pushes up or down
         ax.text(p.get_width() + .3, p.get_y() + .38, int(p.get_width()), fontsize=10)
-    plt.savefig(f'./images/dataviz/{filename}.png', bbox_inches='tight')
+    plt.savefig(f'./images/other/{filename}.png', bbox_inches='tight')
 
 
 # Visualize position distribution
@@ -213,4 +213,4 @@ image_pixels_df.head(3)
 image_pixels_df.tail(3)
 
 # Save image data to csv
-image_pixels_df.to_csv('./dataset/image_pixels.csv')
+image_pixels_df.to_csv('./data/image_pixels.csv')

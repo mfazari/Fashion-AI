@@ -3,8 +3,6 @@ import numpy as np
 import pandas as pd
 import sns
 import tensorflow as tf
-# Model evaluation
-from sklearn import metrics
 
 from fashion_create_model import X_test, y_test_copy
 
@@ -127,7 +125,7 @@ def show_prediction_proba(n):
 
     # Set distribution plot title to predicted label
     ax[1].set_title(f'Predicted: {pred_labels[n]}', size=13)
-    fig.savefig(f'./images/fashion/prediction_{n}.png', bbox_inches='tight');
+    fig.savefig(f'./images/predictions/prediction_{n}.png', bbox_inches='tight');
 
 
 show_prediction_proba(1)
