@@ -33,11 +33,11 @@ Getting Started
 
 **The 3 main files:**
 1. files_to_CSV.py
-    * This file pre-processes our images. It takes our dataset and resizes all files to 75x110 pixels while also converting them to grayscale. Lastly, it uses numpy to save all data into a .csv file.
+    * This file pre-processes our images. It takes our dataset and resizes all files to 75x110 pixels while also converting them to grayscale. Lastly, it uses numpy to save all data into an array that we convert into a .csv file later.
 2. fashion_create_model.py
     * Reads our .csv file and trains our neuronal network. We save the model as "model_fashion_2.h5" using Tensorflow.
 3. fashion_test_model.py
-    * Loading our created model into this file to test it.
+    * Loading our created model into this file to test it. Output is found in /images/predictions.
 
 **Output**
 
