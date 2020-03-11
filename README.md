@@ -9,7 +9,7 @@ Getting Started
 
 ***Disclaimer***: This is still a work in progress. 
 
-**Following library are being used:**
+**Following libraries are being used:**
 * keras
 * tensorflow
 * numpy
@@ -42,9 +42,11 @@ Getting Started
 **Output**
 
 - Successful Prediction
+
 ![Alt text](images/predictions/prediction_80.png "Output 1")
 
 - Failed Prediction
+
 ![Alt text](images/predictions/prediction_54.png "Output 2")
 
 Sources
