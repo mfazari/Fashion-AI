@@ -41,11 +41,11 @@ Getting Started
 
 **Output**
 
-- Successful Prediction
+- Failed rediction
 
     ![Alt text](images/predictions/prediction_80.png "Output 1")
 
-- Failed Prediction
+- Successful Prediction
 
     ![Alt text](images/predictions/prediction_54.png "Output 2")
 
