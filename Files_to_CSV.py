@@ -13,7 +13,7 @@ np.random.seed(2019)
 
 # # Image Pre-Processing
 
-# Run the function on my images folders 
+# Run the function on my images folders
 fashion_list = ['caps', 'pants', 'shoes', 'sweater', 't_shirt']
 
 
@@ -72,7 +72,7 @@ shoes = get_array('shoes', './dataset/shoes')
 
 sweater = get_array('sweater', './dataset/sweater')
 
-t_shirt = get_array('pants', './dataset/t_shirt')
+t_shirt = get_array('t_shirt', './dataset/t_shirt')
 
 # Create variable for all pieces arrays
 piece_arrays = caps, pants, shoes, sweater, t_shirt
@@ -190,8 +190,6 @@ print(f'Number of image labels: {len(y)}')
 
 # # Save image data to csv
 
-# Now I have to prep my arrays to save them a csv file.
-
 
 # Get pixel width for flattened image
 pixels_flat = X.shape[1] * X.shape[2]
@@ -205,6 +203,7 @@ image_pixels_df['piece_num_labels'] = y
 
 # Map pieces to numeric values
 image_pixels_df['pieces_string_labels'] = image_pixels_df['piece_num_labels'].map(piece_dict)
+print(image_pixels_df)
 
 # Preview head
 image_pixels_df.head(3)
@@ -214,3 +213,23 @@ image_pixels_df.tail(3)
 
 # Save image data to csv
 image_pixels_df.to_csv('./data/image_pixels.csv')
+
+
+'''
+image_pixels_df:
+
+       0    1    2    3  ...  8248  8249  piece_num_labels  pieces_string_labels
+0    238  238  238  238  ...   238   238                 0           caps (caps)
+1    250  250  250  250  ...   250   250                 0           caps (caps)
+2    255  255  255  255  ...   255   255                 0           caps (caps)
+3    234  234  234  234  ...   234   234                 0           caps (caps)
+4    235  235  235  235  ...   235   235                 0           caps (caps)
+..   ...  ...  ...  ...  ...   ...   ...               ...                   ...
+466  232  232  232  232  ...   231   231                 4     t_shirt (t_shirt)
+467  236  236  236  236  ...   229   229                 4     t_shirt (t_shirt)
+468  235  235  235  235  ...   231   231                 4     t_shirt (t_shirt)
+469  231  231  231  231  ...    51    32                 4     t_shirt (t_shirt)
+470  235  235  235  235  ...   230   230                 4     t_shirt (t_shirt)
+
+[471 rows x 8252 columns]
+'''

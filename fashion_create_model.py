@@ -5,6 +5,7 @@ import seaborn as sns
 import pandas as pd
 import tensorflow as tf
 # import os
+import pickle
 
 # Modeling libraries
 from sklearn.model_selection import train_test_split
@@ -28,9 +29,6 @@ from sklearn.metrics import confusion_matrix
 np.random.seed(2019)
 
 
-
-
-
 # Check keras version
 import keras
 
@@ -50,6 +48,8 @@ print(f'There are {image_data.shape[0]} images in this dataset!')
 image_data.drop(columns=['Unnamed: 0'], inplace=True)
 
 # Preview head
+print("preview head")
+print(image_data.head(2))
 image_data.head(2)
 
 # ### Create predictor `X` variable
@@ -58,9 +58,19 @@ image_data.head(2)
 
 
 # Create variable to hold only pixel data
+
+# image_data.columns = [0, 1, ... 8249, piece_num_labels, pieces_string_labels]
+# pixels = [0, 1, ... 8249]
 pixels = [col for col in image_data.columns if (col != 'piece_num_labels') & (col != 'pieces_string_labels')]
 
+
 # Preview image pixel values
+'''
+image_data[pixels].head(2)
+     0    1    2    3    4    5    6  ...  8243  8244  8245  8246  8247  8248  8249
+0  238  238  238  238  238  238  238  ...   238   238   238   238   238   238   238
+1  250  250  250  250  250  250  250  ...   250   250   250   250   250   250   250
+'''
 image_data[pixels].head(2)
 
 # Notice in the DataFrame above that the image pixels are still flattened, meaning that you can't tell what the
@@ -91,8 +101,8 @@ y = image_data['piece_num_labels'].values
 # Check shape of y array
 print(f'The shape of the y array is: {y.shape}')
 
-print(y[0:10])
-print(y[1026:])
+print(y[0:5])
+print(y[450:455])
 
 # ## Visualize image pixels to make sure everything was processed correctly
 
@@ -265,8 +275,6 @@ for im in datagen.flow(x, batch_size=1):
 
 plt.show()
 
-# [Image Source](https://www.flickr.com/photos/istolethetv/14547691835/in/photolist-oawHX2-MoQjvg-6JGaA5-HYdVtW-q1eLJd-eAgHvG-p4ndog-q16Pjx-ZnewPd-pHFi3Z-eAeqyP-9UZu2w-7kq24n-aiTZTf-gqi1T-pHHmuy-kYe27-2LURLm-8VTg3Y-6p68bA-qovm-Kz3Xy-pHHreU-dYZZGa-AKSRe-8dVuHW-duDNw2-aiTZph-d6ekGm-WNRTKn-p4jiCS-7mTWPN-pHLAZw-eAigCL-q168Uv-a7DxQd-i2dZo4-nVizxY-6JBVbB-gp1Gm-HYdHD3-p4njnR-nQG9z5-asfFGj-62LwUH-hsFKq-4rTTJh-cKzJK5-pY1cDY-d6efmY)
-
 # ## Design Neural Network
 
 
@@ -354,3 +362,8 @@ cnn_model_2.compile(loss='categorical_crossentropy',  # Loss function for multic
 # Save model
 print("Save model")
 cnn_model_2.save('./data/model_fashion_2.h5')
+
+# Saving the variables with pickle:
+with open('objs.pkl', 'wb') as f:  # Python 3: open(..., 'wb')
+    pickle.dump([X_test, y_test_copy], f)
+print("pickle saved")

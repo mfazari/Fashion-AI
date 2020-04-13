@@ -1,10 +1,12 @@
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 import pandas as pd
-import sns
 import tensorflow as tf
+import pickle
 
-from fashion_create_model import X_test, y_test_copy
+# Getting back the objects:
+with open('objs.pkl', 'rb') as f:  # Python 3: open(..., 'rb')
+    X_test, y_test_copy = pickle.load(f)
 
 cnn_model_2 = tf.keras.models.load_model('./data/model_fashion_2.h5')
 
@@ -48,8 +50,8 @@ pred_labels = np.vectorize(pieces_dict.get)(pred_labels)
 # Preview predicted labels
 pred_labels[20:30]
 
-# ## Get actual labels
 
+# ## Get actual labels
 
 # Preview y_test_copy labels
 y_test_copy[20:30]
