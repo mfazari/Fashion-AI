@@ -226,6 +226,15 @@ print(f'Shape of reshaped y_test: {y_test.shape}')
 
 # Show total number of images per piece in entire dataset
 image_data['pieces_string_labels'].value_counts(normalize=True)
+'''
+Out[8]: 
+sweater (sweater)    0.382166
+shoes (shoes)        0.212314
+t_shirt (t_shirt)    0.159236
+caps (caps)          0.131635
+pants (pants)        0.114650
+Name: pieces_string_labels, dtype: float64
+'''
 
 # Show class with the highest percentage
 image_data['pieces_string_labels'].value_counts(normalize=True)[[0]]
@@ -363,7 +372,7 @@ cnn_model_2.compile(loss='categorical_crossentropy',  # Loss function for multic
 print("Save model")
 cnn_model_2.save('./data/model_fashion_2.h5')
 
-# Saving the variables with pickle:
-with open('objs.pkl', 'wb') as f:  # Python 3: open(..., 'wb')
+# Saving the variables with pickle in a binary format:
+with open('training_values.pkl', 'wb') as f:
     pickle.dump([X_test, y_test_copy], f)
 print("pickle saved")

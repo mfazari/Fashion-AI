@@ -5,7 +5,7 @@ import tensorflow as tf
 import pickle
 
 # Getting back the objects:
-with open('objs.pkl', 'rb') as f:  # Python 3: open(..., 'rb')
+with open('training_values.pkl', 'rb') as f:
     X_test, y_test_copy = pickle.load(f)
 
 cnn_model_2 = tf.keras.models.load_model('./data/model_fashion_2.h5')
