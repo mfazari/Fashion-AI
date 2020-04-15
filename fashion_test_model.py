@@ -78,7 +78,7 @@ piece_list = ['caps (caps)',
               'sweater (sweater)',
               't_shirt (t_shirt)']
 
-# Convert array to DataFrame
+# Convert array to DataFrame/ merge dictionary and list of numbers of prediction
 prediction_proba_df = pd.DataFrame(prediction_proba_array, columns=piece_list)
 
 # Preview DataFrame
