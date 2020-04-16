@@ -368,9 +368,24 @@ cnn_model_2.compile(loss='categorical_crossentropy',  # Loss function for multic
                     optimizer='adam',
                     metrics=['accuracy'])
 
+history_2 = cnn_model_2.fit_generator(train_generator,
+                                      steps_per_epoch=len(X_train) / 64,
+                                      epochs=100,
+                                      validation_data=(X_test, y_test),
+                                      verbose=0)
+
 # Save model
 print("Save model")
 cnn_model_2.save('./data/model_fashion_2.h5')
+
+
+# Evaluate model on test data.
+cnn_score_2 = cnn_model_2.evaluate(X_test,
+                                   y_test,
+                                   verbose=1)
+
+cnn_labels_2 = cnn_model_2.metrics_names
+
 
 # Saving the variables with pickle in a binary format:
 with open('training_values.pkl', 'wb') as f:
