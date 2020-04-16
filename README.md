@@ -40,11 +40,6 @@ Getting Started
     * Loading our created model into this file to test it. Output is found in /images/predictions.
 
 **Output**
-
-- Failed rediction
-
-    ![Alt text](images/predictions/prediction_80.png "Output 1")
-
 - Successful Prediction
 
     ![Alt text](images/predictions/prediction_54.png "Output 2")
