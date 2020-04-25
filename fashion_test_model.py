@@ -1,14 +1,15 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-import tensorflow as tf
 import pickle
+from keras.models import load_model
 
 # Getting back the objects:
 with open('training_values.pkl', 'rb') as f:
     X_test, y_test_copy = pickle.load(f)
 
-cnn_model_2 = tf.keras.models.load_model('./data/model_fashion_2.h5')
+cnn_model_2 = load_model('./data/model_fashion_2.h5')
+
 
 # Reset variables
 X_test_1 = X_test.copy()
@@ -139,3 +140,6 @@ show_prediction_proba(80)
 show_prediction_proba(81)
 
 show_prediction_proba(82)
+
+
+# todo add testing

@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
-import tensorflow as tf
+
 # import os
 import pickle
 
@@ -19,15 +19,10 @@ from keras.layers import Dense, Dropout, Activation, Flatten
 from keras.layers import Conv2D, MaxPooling2D
 from keras.preprocessing.image import ImageDataGenerator
 from keras.preprocessing import image
-from keras.applications.vgg16 import VGG16
 
-# Model evaluation
-from sklearn import metrics
-from sklearn.metrics import confusion_matrix
 
 # For reproducibility
 np.random.seed(2019)
-
 
 # Check keras version
 import keras
@@ -62,7 +57,6 @@ image_data.head(2)
 # image_data.columns = [0, 1, ... 8249, piece_num_labels, pieces_string_labels]
 # pixels = [0, 1, ... 8249]
 pixels = [col for col in image_data.columns if (col != 'piece_num_labels') & (col != 'pieces_string_labels')]
-
 
 # Preview image pixel values
 '''
@@ -368,6 +362,7 @@ cnn_model_2.compile(loss='categorical_crossentropy',  # Loss function for multic
                     optimizer='adam',
                     metrics=['accuracy'])
 
+
 history_2 = cnn_model_2.fit_generator(train_generator,
                                       steps_per_epoch=len(X_train) / 64,
                                       epochs=100,
@@ -377,6 +372,7 @@ history_2 = cnn_model_2.fit_generator(train_generator,
 # Save model
 print("Save model")
 cnn_model_2.save('./data/model_fashion_2.h5')
+
 
 
 # Evaluate model on test data.

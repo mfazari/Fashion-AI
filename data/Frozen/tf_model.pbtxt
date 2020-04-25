@@ -1,0 +1,20 @@
+item {
+    id: 1
+    name: 'caps (caps)'
+}
+item {
+    id: 2
+    name: 'pants (pants)'
+}
+item {
+    id: 3
+    name: 'shoes (shoes)'
+}
+item {
+    id: 4
+    name: 'sweater (sweater)'
+}
+item {
+    id: 5
+    name: 't_shirt (t_shirt)'
+}

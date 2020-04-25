@@ -11,7 +11,7 @@ Getting Started
 
 **Following libraries are being used:**
 * keras
-* tensorflow
+* tensorflow (version 1.15)
 * numpy
 * pandas
 * matplotlib.pygot
