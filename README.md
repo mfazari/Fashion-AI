@@ -20,7 +20,7 @@ Getting Started
 
 **Our dataset:**
 1. Due to copyright reasons, our dataset is not included in this repository.
-2. We use images provided by H&M and Zara to train our model.
+2. We use images provided by different fast fashion brand to train our model.
 3. Has the following properties
     * Caps (62 images)
     * Pants (54 images)
@@ -42,7 +42,7 @@ Getting Started
 **Output**
 - Successful Prediction
 
-    ![Alt text](images/predictions/prediction_82.png "Output 2")
+    ![Alt text](images/predictions/prediction_82.png "Output")
 
 Sources
 ------------
