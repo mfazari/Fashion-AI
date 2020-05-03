@@ -90,14 +90,14 @@ prediction_proba_df.head(2)
 
 
 # Function to graph image and probability of predictions
-def show_prediction_proba(n):
+def show_prediction(n):
     # This code block will print interpretation of results
     pred_series = prediction_proba_df.loc[n].sort_values(ascending=False)
     true_perc = round(prediction_proba_df.loc[n][actual_labels[n]] * 100, 2)
     if actual_labels[n] == pred_series.index[0]:
         print("\U0001f600 CORRECT PREDICTION!")
     elif (round(pred_series[0] * 100, 2) - true_perc <= 4) & (actual_labels[n] != pred_series.index[0]):
-        print("\U0001F610 INCORRECT PREDICTION, but close call!")
+        print("\U0001F610 INCORRECT PREDICTION, but almost!")
     else:
         print("\U0001F612 INCORRECT PREDICTION!")
     print(f' - Probability of predicting actual piece ({actual_labels[n]}): {true_perc}%')
@@ -123,7 +123,7 @@ def show_prediction_proba(n):
     ax[0].set_title(f'Actual: {actual_labels[n]}', size=13)
 
     # Plot predicted probabilities distribution
-    ax[1].barh(piece_list, prediction_proba_array[n], color='purple')
+    ax[1].barh(piece_list, prediction_proba_array[n], color='blue')
     ax[1].barh
 
     # Set distribution plot title to predicted label
@@ -131,15 +131,12 @@ def show_prediction_proba(n):
     fig.savefig(f'./images/predictions/prediction_{n}.png', bbox_inches='tight');
 
 
-show_prediction_proba(1)
+show_prediction(1)
 
-show_prediction_proba(54)
+show_prediction(54)
 
-show_prediction_proba(80)
+show_prediction(80)
 
-show_prediction_proba(81)
+show_prediction(81)
 
-show_prediction_proba(82)
-
-
-# todo add testing
+show_prediction(82)

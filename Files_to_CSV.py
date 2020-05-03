@@ -7,7 +7,6 @@ import os
 
 # Image-specific libraries 
 from PIL import Image
-from keras.preprocessing import image
 
 np.random.seed(2019)
 
@@ -40,8 +39,10 @@ for piece in fashion_list:
     resize_images(fashion_directory)
 
 
-# ## Convert images to grayscale and numpy array
-# This function will find my images in my directory and convert any colored images to grayscale, and it will convert all images to numpy arrays.
+# # Convert images to grayscale and numpy array
+
+# This function will find my images in my directory and convert any colored images to grayscale, and it will convert
+# all images to numpy arrays.
 
 
 # Function to convert images to grayscale and numpy array
@@ -119,7 +120,7 @@ piece_labels_df.head()
 
 # Function to make bar plot
 def bar_plot(x, y, title, color, filename):
-    # Set up barplot 
+    # Set up barplot
     plt.figure(figsize=(9, 5))
     g = sns.barplot(x, y, color=color)
     ax = g
@@ -171,7 +172,7 @@ fig.tight_layout()
 plt.show()
 fig.savefig(f'./dataset/preview_dataset.png', bbox_inches='tight')
 
-# ## Predictor array (all image pixels)
+# # Predictor array (all image pixels)
 
 
 # Concatenate all 5 clothing pieces arrays into one array
@@ -199,6 +200,7 @@ print(f'The pixel width, when flattened, is: {pixels_flat}')
 image_pixels_df = pd.DataFrame(X.reshape(len(y), pixels_flat))
 
 # Add labels column
+# y = piece_labels
 image_pixels_df['piece_num_labels'] = y
 
 # Map pieces to numeric values

@@ -1,10 +1,8 @@
 # Basic libraries
 import numpy as np
 import matplotlib.pyplot as plt
-import seaborn as sns
 import pandas as pd
 
-# import os
 import pickle
 
 # Modeling libraries
@@ -20,14 +18,9 @@ from keras.layers import Conv2D, MaxPooling2D
 from keras.preprocessing.image import ImageDataGenerator
 from keras.preprocessing import image
 
-
 # For reproducibility
-np.random.seed(2019)
+np.random.seed(2020)
 
-# Check keras version
-import keras
-
-keras.__version__
 
 # # Import image data
 
@@ -47,9 +40,11 @@ print("preview head")
 print(image_data.head(2))
 image_data.head(2)
 
-# ### Create predictor `X` variable
+# # Create predictor `X` variable
 
-# My `X` variable will contain image pixels. I need to pre-process my `X` variable to make sure it's ready to be run through my model. The only pre-processing step I need to take here is reshaping the array. I explain more a few cells below.
+# My `X` variable will contain image pixels. I need to pre-process my `X` variable to make sure it's ready to be run
+# through my model. The only pre-processing step I need to take here is reshaping the array. I explain more a few
+# cells below.
 
 
 # Create variable to hold only pixel data
@@ -122,12 +117,14 @@ plt.show()
 
 # # Train/Test Split
 
-# Train/test split is taking my original dataset of image pixels and image labels, and splitting it into a training set and test set. I will "train" my model on my training set, and then I'll use my testing set as if it's unseen data and pass it through my model. Train/test split will help me determine if my model will perform well on more unseen data.
-#
-# After train/test splitting, I need to conduct additional pre-processing to my data to make sure it's ready to be run through my CNN models. In summary, I conducted the following pre-processing steps in this section:
-#  - 1. Convert pixel values (0-255) to percentages (e.g., 1.0 to indicate 100%, 0.75 to indicate 75%, etc)
-#  - 2. Reshape `X` array from `(110, 75)` t `(110, 75, 1)`
-#  - 3. Convert `y` piece interger values 0-4 to categorical values
+# Train/test split is taking my original dataset of image pixels and image labels, and splitting it into a training
+# set and test set. I will "train" my model on my training set, and then I'll use my testing set as if it's unseen
+# data and pass it through my model. Train/test split will help me determine if my model will perform well on more
+# unseen data. After train/test splitting, I need to conduct additional pre-processing to my data to make sure it's
+# ready to be run through my CNN models. In summary, I conducted the following pre-processing steps in this section:
+# - 1. Convert pixel values (0-255) to percentages (e.g., 1.0 to indicate 100%, 0.75 to indicate 75%,
+# etc) - 2. Reshape `X` array from `(110, 75)` t `(110, 75, 1)` - 3. Convert `y` piece interger values 0-4 to
+# categorical values
 
 
 # Train/test split, and stratify y since this is a classification problem
@@ -147,12 +144,13 @@ print(f'Image dimensions: {X_train[0].shape}')
 X_train_copy = X_train.copy()
 X_test_copy = X_test.copy()
 
-# ### Convert `X_train`/`X_test` values to percentages
+# # Convert `X_train`/`X_test` values to percentages
 
-# In the cell below, I'm converting my pixel values to floats and then dividing them by 255 because I want to get a percentage value between 0 and 1. Now if a pixel is 1 (or 100%), that means it's white. And if it's 0 (or 0%) that means it's black. If the pixel is 0.75, then that means the pixel is probably going to be a light gray, and if it's 0.25 then it's going to be a dark gray. Converting my pixel values to percentages between 0 and 1 helps increase processing time by increasing computational efficiency.
-
-# In[18]:
-
+# In the cell below, I'm converting my pixel values to floats and then dividing them by 255 because I want to get a
+# percentage value between 0 and 1. Now if a pixel is 1 (or 100%), that means it's white. And if it's 0 (or 0%) that
+# means it's black. If the pixel is 0.75, then that means the pixel is probably going to be a light gray, and if it's
+# 0.25 then it's going to be a dark gray. Converting my pixel values to percentages between 0 and 1 helps increase
+# processing time by increasing computational efficiency.
 
 # Convert each value to a float, since we want to divide and get a percentage value.
 X_train = X_train.astype('float32')
@@ -197,7 +195,7 @@ print(f'Shape of y_test: {y_test.shape}')
 # Preview of y labels
 y_train[0:5]
 
-# ### Convert `y_train`/`y_test` to categorical values
+# # Convert `y_train`/`y_test` to categorical values
 
 # Save a non-converted y_test for when I make predictions. I'll need it.
 y_test_copy = y_test.copy()
@@ -237,19 +235,11 @@ image_data['pieces_string_labels'].value_counts(normalize=True)[[0]]
 baseline_score = round(image_data['pieces_string_labels'].value_counts(normalize=True)[0], 3) * 100
 print(f'My model must perform better than {baseline_score}% in order to predict more than just the plurality class.')
 
-# # CNN Model 2: Data Augmentation
+# # Model
 
-# Since my original dataset is relatively small, with only a little over 1,000 images, I'll do some Keras magic to trick my model into think I have a larger, more varied dataset. Keras' `ImageDataGenerator` class generates "batches of tensor image data with real-time data augmentation. The data will be looped over (in batches)." What that means is when I `fit` my model and run my images through the model, `ImageDataGenerator` will alter my images according to my specifications and run those altered images through my model. Here are the alterations I made to my images:
-#  - `rotation_range`: (int) rotates images
-#  - `width_shift_range`: (float) makes image wider horizontally
-#  - `height_shift_range`: (float) makes image longer vertically
-#  - `zoom_range`: (float) randomly zooms in
-#  - `shear_range`: (float) randomly applies [shear mapping](https://en.wikipedia.org/wiki/Shear_mapping)
-#  - `horizontal_flip`: (boolean) applies horizontal flip
-#  - `fill_mode`: (`"constant"`, `"nearest"`, `"reflect"` or `"wrap"`) fills newly created pixels
+# Since the original dataset is relatively small, we'll use Keras' `ImageDataGenerator` class to artificially expand
+# our dataset and generate batches of tensor image data with real-time data augmentation.
 
-
-# Code modified from https://blog.keras.io/building-powerful-image-classification-models-using-very-little-data.html
 
 # Set parameters to modify images
 datagen = ImageDataGenerator(rotation_range=15,
@@ -324,9 +314,10 @@ print("relu")
 cnn_model_2.add(Dense(y_test.shape[1], activation='softmax'))
 print("softmax")
 
-# ### Set parameters for data augmentation
+## Preparations for data augmentation
 
-# Here, I apply `ImageDataGenerator` to augment my training dataset. I do not need to augment my testing dataset since the training dataset is what will be used to train my model.
+# Here, I apply `ImageDataGenerator` to augment my training dataset. I do not need to augment my testing dataset
+# since the training dataset is what will be used to train my model.
 
 
 # Set batch size
@@ -362,7 +353,6 @@ cnn_model_2.compile(loss='categorical_crossentropy',  # Loss function for multic
                     optimizer='adam',
                     metrics=['accuracy'])
 
-
 history_2 = cnn_model_2.fit_generator(train_generator,
                                       steps_per_epoch=len(X_train) / 64,
                                       epochs=100,
@@ -373,8 +363,6 @@ history_2 = cnn_model_2.fit_generator(train_generator,
 print("Save model")
 cnn_model_2.save('./data/model_fashion_2.h5')
 
-
-
 # Evaluate model on test data.
 cnn_score_2 = cnn_model_2.evaluate(X_test,
                                    y_test,
@@ -382,8 +370,7 @@ cnn_score_2 = cnn_model_2.evaluate(X_test,
 
 cnn_labels_2 = cnn_model_2.metrics_names
 
-
-# Saving the variables with pickle in a binary format:
+# Saving the variables with pickle in a binary format
 with open('training_values.pkl', 'wb') as f:
     pickle.dump([X_test, y_test_copy], f)
 print("pickle saved")

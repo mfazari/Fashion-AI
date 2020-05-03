@@ -42,7 +42,7 @@ Getting Started
 **Output**
 - Successful Prediction
 
-    ![Alt text](images/predictions/prediction_54.png "Output 2")
+    ![Alt text](images/predictions/prediction_82.png "Output 2")
 
 Sources
 ------------
